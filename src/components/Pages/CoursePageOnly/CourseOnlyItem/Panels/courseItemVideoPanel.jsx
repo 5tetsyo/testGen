@@ -11,7 +11,12 @@ const CourseItemVideoPanel = ({courseVideos, currentCourse, currentVideo, isOpen
 
         return sec >= 3600 ?  h + ':' + m + ':' + s : m + ':' + s;
     };
-    console.log(isOpenedDesc)
+    const enterPictureInPicture = () => {
+        const video = videoRef.current;
+        if (video) {
+            video.requestPictureInPicture();
+        }
+    };
     return (
         <div className={classes.courseVideoPanelContainer}>
             <div className={classes.courseDesc}>
@@ -31,6 +36,7 @@ const CourseItemVideoPanel = ({courseVideos, currentCourse, currentVideo, isOpen
                         {currentCourse?.meta?.skills.map((skill,i) => <div key={i} className={classes.skill}>{skill}</div>)}
                     </div>
                     <button onClick={() => {setIsOpenedDesc(!isOpenedDesc)}}>{!isOpenedDesc ? "Open description" : "Close description"}</button>
+                    <button onClick={enterPictureInPicture}>Enter picture in picture</button>
                 </div>
             </div>
         </div>
